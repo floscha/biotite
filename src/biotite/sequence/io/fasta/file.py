@@ -68,7 +68,7 @@ class FastaFile(TextFile, MutableMapping):
         self._entries = OrderedDict()
     
     @classmethod
-    def read(cls, file, chars_per_line=80):
+    def read(cls, file, chars_per_line=80, encoding=None):
         """
         Read a FASTA file.
         
@@ -88,7 +88,7 @@ class FastaFile(TextFile, MutableMapping):
         file_object : FastaFile
             The parsed file.
         """
-        file = super().read(file, chars_per_line)
+        file = super().read(file, chars_per_line, encoding=encoding)
         # Filter out empty and comment lines
         file.lines = [line for line in file.lines
                       if len(line.strip()) != 0 and line[0] != ";"]
