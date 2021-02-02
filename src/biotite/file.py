@@ -105,7 +105,7 @@ class TextFile(File, metaclass=abc.ABCMeta):
     def read(cls, file, *args, **kwargs):
         # File name
         if isinstance(file, str):
-            with open(file, "r") as f:
+            with open(file, "r", encoding=kwargs.get("encoding")) as f:
                 lines = f.read().splitlines()
         # File object
         else:
